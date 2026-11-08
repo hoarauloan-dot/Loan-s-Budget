@@ -1,4 +1,4 @@
-# Mon Budget — V1.0.0
+# Mon Budget — V1.0.1
 Application PWA personnelle, locale, en français, adaptée à Chrome Android et aux navigateurs récents. Aucun compte bancaire connecté, aucun serveur de stockage et aucune synchronisation entre appareils.
 
 ## Installer sur GitHub Pages
@@ -26,3 +26,9 @@ L'import **remplace** les données du navigateur après vérification et confirm
 
 ## Vérifications et limites de test
 Fichiers JS et JSON soumis à vérification de syntaxe à la livraison. Aucune validation physique sur téléphone Samsung ni audit complet multi-navigateurs n'a été effectuée. L'installation, le mode hors ligne, les dialogues, les exports et la mise à jour doivent être testés sur l'appareil cible avant un usage quotidien.
+
+## Version 1.0.1 — correctif
+- Navigation vers le mois précédent/suivant corrigée sur Accueil, Opérations, Budget et Bilans.
+- Calcul de mois sans conversion UTC ; la navigation fonctionne au changement d’année.
+- Nouveau logo portefeuille en marbre noir intégré dans les trois icônes.
+- Aucun changement du nom de base IndexedDB ni de l’identité du manifest ; données locales préservées lors d’une mise à jour normale.
