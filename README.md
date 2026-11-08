@@ -1,47 +1,25 @@
-# Mon Budget V1.1.0 — Éditorial élégant
+# Mon Budget V1.2.0 — Suivi mensuel simple
 
-# Mon Budget — V1.0.1
-Application PWA personnelle, locale, en français, adaptée à Chrome Android et aux navigateurs récents. Aucun compte bancaire connecté, aucun serveur de stockage et aucune synchronisation entre appareils.
+## Installation / mise à jour
+1. **Sur PC**, décompresser cette archive, puis déposer ses fichiers à la racine du dépôt GitHub Pages existant. Valider le commit.
+2. Attendre que le déploiement GitHub Pages soit terminé.
+3. Sur le Samsung, ouvrir Mon Budget > Réglages > Rechercher les mises à jour. Si disponible, choisir Charger / Installer la nouvelle version. Un rechargement normal peut aussi être nécessaire.
+4. Vérifier la version 1.2.0 dans Réglages.
 
-## Installer sur GitHub Pages
-1. Décompresser le ZIP.
-2. Créer un dépôt GitHub, par exemple `mon-budget`.
-3. Ajouter **le contenu du dossier** à la racine du dépôt (pas le dossier lui-même), puis `Commit changes`.
-4. `Settings` → `Pages` → `Deploy from a branch` → branche `main`, dossier `/ (root)` → `Save`.
-5. Ouvrir `https://VOTRE-NOM.github.io/mon-budget/` dans Chrome sur le Samsung.
-6. Menu Chrome → `Ajouter à l'écran d'accueil` / `Installer l'application`.
-7. Ouvrir l'application en ligne une fois, puis tester le mode avion.
-8. `Paramètres` → `Exporter une sauvegarde` pour créer une sauvegarde JSON régulière.
-9. Pour une nouvelle version : remplacer les fichiers, mettre à jour `VERSION`/`CACHE` de `sw.js`, publier puis `Paramètres` → `Rechercher les mises à jour`.
+**Le bouton de mise à jour ne transfère pas le ZIP vers GitHub.** La publication sur GitHub doit être faite avant de cliquer dans l'application.
 
-## Importer les données préparées depuis Excel
-Le fichier séparé `import-prive-novembre-2026.json` **n'est pas dans ce ZIP** : ne l'ajoutez **jamais** à GitHub. Sur le Samsung, ouvrez `Paramètres` → `Importer une sauvegarde` et sélectionnez ce fichier **avant d'ajouter d'autres données**. Examinez les informations dans l'application et confirmez les montants. Les colonnes de l'Excel n'indiquent pas de manière certaine quels paiements ont été effectivement débités : les opérations sont donc initialement marquées `À payer` ou `À recevoir` par prudence. Le `solde 2 775 €` est traité comme solde d'ouverture à vérifier et non comme salaire encaissé. Les versements d'épargne sont des transferts et non des dépenses de consommation.
+## Usage simple
+- **Mon mois** : revenus et dépenses du mois, part payée, rubriques automatiques.
+- **Dépenses** : appuyer sur une ligne pour modifier, payer, copier ou reporter.
+- **Prévisions** : budgets par catégories et charges récurrentes.
+- **Épargne** : coffres et transferts.
+- **Bilan** : suivi et graphiques.
+- **Réglages** : sauvegarder, importer, vérifier la version.
 
-## Confidentialité et limites
-Le **code** déposé sur GitHub est public. Les **données** saisies restent dans IndexedDB sur le navigateur de l'appareil, sauf export volontaire. Elles ne sont **pas chiffrées**. Elles peuvent être perdues si le stockage du navigateur est effacé, si le téléphone est perdu ou si vous changez d'origine GitHub Pages. Ne communiquez pas les fichiers de sauvegarde. Le stockage est indépendant par navigateur/appareil : aucun partage automatique entre Samsung et iPhone.
+Les chiffres restent stockés localement dans IndexedDB `mon-budget-db`, qui conserve le même nom et le même schéma qu'en V1.1.0. Aucune donnée privée dans ce ZIP. Une sauvegarde JSON est conseillée **avant** la mise à jour. Ne pas désinstaller l'application ni effacer les données du site.
 
-## Calculs
-Montants stockés en centimes entiers. Dépense `payée` = déduite du solde réel estimé ; prévue = prise en compte dans la prévision seulement. Les transferts ne sont jamais classés comme dépenses de consommation. Le solde affiché est un **solde calculé**, exact uniquement si les soldes initiaux et les opérations sont complets. Un revenu n'est pas assimilé automatiquement à un solde d'ouverture.
+## Design
+Interface originale inspirée de la structure générale des tableaux de budget (présentation mensuelle, 4 indicateurs, lignes de dépenses, bilan). Il ne s'agit pas du template FocusDaily original.
 
-## Import / restauration
-L'import **remplace** les données du navigateur après vérification et confirmation. Faire un export préalable. La restauration utilise une transaction IndexedDB multi-magasins atomique. Ne pas confondre ce mécanisme avec une garantie de sauvegarde externe.
-
-## Vérifications et limites de test
-Fichiers JS et JSON soumis à vérification de syntaxe à la livraison. Aucune validation physique sur téléphone Samsung ni audit complet multi-navigateurs n'a été effectuée. L'installation, le mode hors ligne, les dialogues, les exports et la mise à jour doivent être testés sur l'appareil cible avant un usage quotidien.
-
-## Version 1.0.1 — correctif
-- Navigation vers le mois précédent/suivant corrigée sur Accueil, Opérations, Budget et Bilans.
-- Calcul de mois sans conversion UTC ; la navigation fonctionne au changement d’année.
-- Nouveau logo portefeuille en marbre noir intégré dans les trois icônes.
-- Aucun changement du nom de base IndexedDB ni de l’identité du manifest ; données locales préservées lors d’une mise à jour normale.
-
-
-## Nouveautés V1.1.0
-- Refonte complète des styles : ton crème, typographie éditoriale, listes à séparateurs fins, présentation du solde et statistiques sans cartes répétitives.
-- Dépenses ponctuelles par mois ; ajout et modification sur n’importe quel mois sélectionné.
-- Actions « Copier », « Reporter » (au mois suivant pour les opérations non payées), « Payer/Annuler ».
-- Champ facultatif « Montant initialement prévu » distinct du montant de l’opération.
-- Conserve `mon-budget-db`, le manifest et les stores IndexedDB existants.
-- Si votre mère a déjà une catégorie, elle reste en place ; les catégories suggérées (anniversaires, sorties, randonnées, vacances) sont créées uniquement dans une installation neuve. Elle peut aussi les ajouter via Paramètres.
-
-**Précaution :** exporter une sauvegarde avant chaque déploiement important. Ne jamais mettre le JSON de dépenses privées dans le dépôt GitHub.
+## Vérifications
+Contrôles de syntaxe et des fichiers du ZIP possibles en local; utilisation Android et migration réelle à confirmer sur le téléphone.

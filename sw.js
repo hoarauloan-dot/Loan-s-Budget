@@ -1,4 +1,4 @@
-const VERSION='1.1.0',BASE=new URL('./',self.location.href).pathname,CACHE=`mon-budget:${BASE}:v1.1.0`;const FILES=['./','./index.html','./style.css','./db.js','./budget.js','./charts.js','./app.js','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
+const VERSION='1.2.0',BASE=new URL('./',self.location.href).pathname,CACHE=`mon-budget:${BASE}:v1.2.0`;const FILES=['./','./index.html','./style.css','./db.js','./budget.js','./charts.js','./app.js','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
 self.addEventListener('install',e=>e.waitUntil((async()=>{const c=await caches.open(CACHE);await c.addAll(FILES)})()));
 self.addEventListener('activate',e=>e.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith(`mon-budget:${BASE}:`)&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim()})()));
 self.addEventListener('message',e=>{if(e.data?.type==='SKIP_WAITING')self.skipWaiting();if(e.data?.type==='VERSION')e.source?.postMessage({type:'VERSION',version:VERSION})});
