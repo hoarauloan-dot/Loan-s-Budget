@@ -1,3 +1,5 @@
+# Mon Budget V1.1.0 — Éditorial élégant
+
 # Mon Budget — V1.0.1
 Application PWA personnelle, locale, en français, adaptée à Chrome Android et aux navigateurs récents. Aucun compte bancaire connecté, aucun serveur de stockage et aucune synchronisation entre appareils.
 
@@ -32,3 +34,14 @@ Fichiers JS et JSON soumis à vérification de syntaxe à la livraison. Aucune v
 - Calcul de mois sans conversion UTC ; la navigation fonctionne au changement d’année.
 - Nouveau logo portefeuille en marbre noir intégré dans les trois icônes.
 - Aucun changement du nom de base IndexedDB ni de l’identité du manifest ; données locales préservées lors d’une mise à jour normale.
+
+
+## Nouveautés V1.1.0
+- Refonte complète des styles : ton crème, typographie éditoriale, listes à séparateurs fins, présentation du solde et statistiques sans cartes répétitives.
+- Dépenses ponctuelles par mois ; ajout et modification sur n’importe quel mois sélectionné.
+- Actions « Copier », « Reporter » (au mois suivant pour les opérations non payées), « Payer/Annuler ».
+- Champ facultatif « Montant initialement prévu » distinct du montant de l’opération.
+- Conserve `mon-budget-db`, le manifest et les stores IndexedDB existants.
+- Si votre mère a déjà une catégorie, elle reste en place ; les catégories suggérées (anniversaires, sorties, randonnées, vacances) sont créées uniquement dans une installation neuve. Elle peut aussi les ajouter via Paramètres.
+
+**Précaution :** exporter une sauvegarde avant chaque déploiement important. Ne jamais mettre le JSON de dépenses privées dans le dépôt GitHub.
